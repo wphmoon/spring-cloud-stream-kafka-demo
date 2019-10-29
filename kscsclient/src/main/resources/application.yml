@@ -1,0 +1,23 @@
+server:
+  port: 8081
+spring:
+  cloud:
+    stream:
+      default-binder: kafka
+      kafka:
+        binder:
+          brokers:
+          - 120.55.190.227:9092
+          zk-nodes: 120.55.190.227:2181
+      bindings:
+        input:
+         binder: kafka
+         destination: test1
+         content-type: text/plain
+         group: input-group-1
+        my-in:
+         binder: kafka
+         destination: mytest
+         content-type: text/plain
+         group: input-group-2
+

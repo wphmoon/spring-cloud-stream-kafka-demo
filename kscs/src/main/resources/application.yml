@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    stream:
+      default-binder: kafka #默认的绑定器，
+      kafka: #如果用的是rabbitMQ这里填 rabbit
+        binder:
+          brokers: #Kafka的消息中间件服务器地址
+          - localhost:9092
+      bindings:
+        output:
+          binder: kafka
+          destination: test1 #消息发往的目的地，对应topic
+          group: output-group-1 #对应kafka的group
+          content-type: text/plain #消息的格式
+        my-out:
+          binder: kafka
+          destination: mytest #消息发往的目的地，对应topic
+          group: output-group-2 #对应kafka的group
+          content-type: text/plain #消息的格式
+        
