@@ -7,8 +7,7 @@ spring:
       kafka:
         binder:
           brokers:
-          - 120.55.190.227:9092
-          zk-nodes: 120.55.190.227:2181
+          - localhost:9092
       bindings:
         input:
          binder: kafka
