@@ -9,5 +9,4 @@ public class KscsclientApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(KscsclientApplication.class, args);
 	}
-
 }
