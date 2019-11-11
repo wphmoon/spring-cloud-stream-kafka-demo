@@ -21,10 +21,7 @@ public class Consumer {
 	}
 
 	@StreamListener(target = Sink.INPUT, condition = "headers['type']=='chat'")
-	public void handle(@Payload ChatMessage message) {
-		final DateTimeFormatter df = DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)
-				.withZone(ZoneId.systemDefault());
-		final String time = df.format(Instant.ofEpochMilli(message.getTime()));
-		logger.info("recieved a complex message : [{}]: {}", time, message.getContents());
+	public void handle(ChatMessage message) {
+		logger.info(message.toString());
 	}
 }
