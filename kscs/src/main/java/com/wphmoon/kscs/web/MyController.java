@@ -1,5 +1,7 @@
 package com.wphmoon.kscs.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +15,7 @@ import com.wphmoon.kscs.service.Producer;
 
 @RestController
 public class MyController {
+	private static final Logger logger = LoggerFactory.getLogger(MyController.class);
 	@Autowired
 	private Producer producer;
 	@Autowired
@@ -23,7 +26,7 @@ public class MyController {
 // get the message as a complex type via HTTP, publish it to broker using spring cloud stream
 	@RequestMapping(value = "/sendMessage/complexType", method = RequestMethod.POST)
 	public String publishMessageComplextType(@RequestBody ChatMessage payload) {
-		payload.setTime(System.currentTimeMillis());
+		logger.info(payload.toString());
 		producer.getMysource().output().send(MessageBuilder.withPayload(payload).setHeader("type", "chat").build());
 		return "success";
 	}
